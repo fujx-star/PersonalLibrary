@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonalLibrary">
         <activity
-            android:name=".BookListActivity"
+            android:name=".activity.BookListActivity"
             android:exported="false" />
         <activity
-            android:name=".AddBookActivity"
+            android:name=".activity.AddBookActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,8 +1,10 @@
-package com.example.personallibrary;
+package com.example.personallibrary.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.personallibrary.R;
 
 public class BookListActivity extends AppCompatActivity {
 

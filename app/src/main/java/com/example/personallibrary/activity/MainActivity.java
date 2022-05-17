@@ -1,10 +1,12 @@
-package com.example.personallibrary;
+package com.example.personallibrary.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.example.personallibrary.R;
 
 public class MainActivity extends AppCompatActivity {
 
