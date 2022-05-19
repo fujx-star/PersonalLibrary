@@ -5,12 +5,13 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Book {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private String author;
     private String publisher;
-    private int year;
+    private String year;
 
     @Override
     public String toString() {
@@ -21,6 +22,13 @@ public class Book {
                 ", publisher='" + publisher + '\'' +
                 ", year=" + year +
                 '}';
+    }
+
+    public Book(String name, String author, String publisher, String year) {
+        this.name = name;
+        this.author = author;
+        this.publisher = publisher;
+        this.year = year;
     }
 
     public int getId() {
@@ -55,21 +63,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
-    }
-
-    public Book(String name, String author, String publisher, int year) {
-        this.name = name;
-        this.author = author;
-        this.publisher = publisher;
-        this.year = year;
-    }
-
-    public Book() {
     }
 }

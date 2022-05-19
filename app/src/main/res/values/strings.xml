@@ -7,4 +7,6 @@
     <string name="publisher">出版社</string>
     <string name="year">出版年份</string>
     <string name="isbn">ISBN</string>
+    <string name="order_by_author">按作者名排序</string>
+    <string name="order_by_year">按出版年份排序</string>
 </resources>

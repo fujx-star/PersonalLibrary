@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,15 +22,20 @@ import java.net.URLConnection;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.personallibrary.R;
+import com.example.personallibrary.room.Book;
+import com.example.personallibrary.room.manage.DBEngine;
 import com.google.android.material.textfield.TextInputEditText;
 
 
 public class AddBookActivity extends AppCompatActivity {
 
+    private DBEngine dbEngine;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
+        dbEngine = new DBEngine(this);
     }
 
     public void queryBook(View view) {
@@ -39,7 +46,7 @@ public class AddBookActivity extends AppCompatActivity {
         }
         else {
             GetBookTask bookTask = new GetBookTask(this);
-            bookTask.execute("9787020024760");
+            bookTask.execute(ISBNNumber);
         }
     }
 
@@ -48,7 +55,19 @@ public class AddBookActivity extends AppCompatActivity {
         TextView textAuthor = findViewById(R.id.author);
         TextView textPublisher = findViewById(R.id.publisher);
         TextView textYear = findViewById(R.id.year);
+        if (textName.getText() == null || textAuthor.getText() == null || textPublisher.getText() == null || textYear.getText() == null) {
+            Toast.makeText(this,"添加的书籍不能为空！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String name = textName.getText().toString();
+        String author = textAuthor.getText().toString();
+        String publisher = textPublisher.getText().toString();
+        String year = textYear.getText().toString();
+        Book book = new Book(name, author, publisher, year);
+        dbEngine.insertBooks(book);
+        Toast.makeText(this,"图书《"+name+"》已经添加到个人藏书馆",Toast.LENGTH_SHORT).show();
     }
+
 
 //    通过静态内部类加弱引用的方式更新UI
     private static class GetBookTask extends AsyncTask<String, Void, String> {
@@ -111,20 +130,37 @@ public class AddBookActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            if (s == null) {
+                Log.e("PersonalLibrary","ISBN查询结果为空，可能由服务器下线或者apikey为空引起");
+                return;
+            }
             AddBookActivity activity = activityReference.get();
             if (activity == null || activity.isFinishing()) {
+                Log.e("PersonalLibrary","Activity弱引用创建失败或Activity已经结束");
                 return;
             }
             JSONObject jsonObject = JSON.parseObject(s);
+            //因为ISBN号码错误或查询过于频繁导致查询失败
+            if (jsonObject.getString("ret").equals("1")) {
+                Toast.makeText(activity.getApplicationContext(),jsonObject.getString("msg"),Toast.LENGTH_SHORT).show();
+                return;
+            }
+            //进行到此处说明查询到了可添加的图书，需要渲染图书信息且设置添加按钮为可添加
             JSONObject data = jsonObject.getJSONObject("data");
+            String name = data.getString("name") == null?"无": data.getString("name");
+            String author = data.getString("author") == null?"无": data.getString("author");
+            String publisher = data.getString("publishing") == null?"无": data.getString("publishing");
+            String year = data.getString("published") == null?"无": data.getString("published");
             TextView textName = activity.findViewById(R.id.name);
             TextView textAuthor = activity.findViewById(R.id.author);
             TextView textPublisher = activity.findViewById(R.id.publisher);
             TextView textYear = activity.findViewById(R.id.year);
-            textName.setText(data.getString("name"));
-            textAuthor.setText(data.getString("author"));
-            textPublisher.setText(data.getString("publishing"));
-            textYear.setText(data.getString("published"));
+            Button button_add = activity.findViewById(R.id.button_add);
+            textName.setText(name);
+            textAuthor.setText(author);
+            textPublisher.setText(publisher);
+            textYear.setText(year);
+            button_add.setEnabled(true);
         }
     }
 }
