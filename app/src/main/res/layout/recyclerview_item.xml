@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:text="@string/name"
-        android:maxWidth="70dp"
+        android:maxWidth="60dp"
         android:layout_marginLeft="50dp" />
 
     <TextView

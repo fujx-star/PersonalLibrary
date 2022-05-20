@@ -12,16 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonalLibrary">
         <activity
+            android:name=".activity.BookSettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.BookListActivity"
             android:exported="false" />
         <activity
             android:name=".activity.AddBookActivity"
-            android:exported="false" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:exported="false">
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".activity.MainActivity"

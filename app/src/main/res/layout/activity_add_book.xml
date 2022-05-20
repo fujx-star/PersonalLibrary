@@ -8,9 +8,9 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textInputEditText"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:hint="@string/isbn"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -27,42 +27,35 @@
         android:id="@+id/button_query"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:layout_marginBottom="50dp"
         android:onClick="queryBook"
         android:text="@string/query"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText"
         tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="28dp"
         android:enabled="false"
         android:onClick="addBook"
         android:text="@string/add"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/textInputEditText"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText"
         tools:ignore="UsingOnClickInXml" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="450dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,20 +63,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="234dp"
+                android:layout_width="205dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:text="@string/name"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="234dp"
+                android:layout_width="205dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,20 +85,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="234dp"
+                android:layout_width="205dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:text="@string/author"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/author"
-                android:layout_width="234dp"
+                android:layout_width="205dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -114,20 +107,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="234dp"
+                android:layout_width="205dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:text="@string/publisher"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/publisher"
-                android:layout_width="234dp"
+                android:layout_width="205dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -136,22 +129,69 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="234dp"
+                android:layout_width="205dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:text="@string/year"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/year"
-                android:layout_width="234dp"
+                android:layout_width="205dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/price_layout"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="205dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="@string/price"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="205dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_baseline_settings_24"
+        android:onClick="setting"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

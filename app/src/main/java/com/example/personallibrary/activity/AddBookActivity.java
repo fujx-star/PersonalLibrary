@@ -2,11 +2,15 @@ package com.example.personallibrary.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +42,26 @@ public class AddBookActivity extends AppCompatActivity {
         dbEngine = new DBEngine(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sp = getSharedPreferences("bookSetting", Context.MODE_PRIVATE);
+        String sp1 = sp.getString("checked","false");
+        String sp2 = sp.getString("size","15");
+        boolean checked = Boolean.parseBoolean(sp1);
+        int size = Integer.parseInt(sp2);
+        TextView textName = findViewById(R.id.name);
+        TextView textAuthor = findViewById(R.id.author);
+        TextView textPublisher = findViewById(R.id.publisher);
+        TextView textYear = findViewById(R.id.year);
+        LinearLayout linearLayout = findViewById(R.id.price_layout);
+        textName.setTextSize(size);
+        textAuthor.setTextSize(size);
+        textPublisher.setTextSize(size);
+        textYear.setTextSize(size);
+        linearLayout.setVisibility(checked?View.VISIBLE:View.INVISIBLE);
+    }
+
     public void queryBook(View view) {
         TextInputEditText textInputEditText = findViewById(R.id.textInputEditText);
         String ISBNNumber = textInputEditText.getText().toString();
@@ -55,21 +79,28 @@ public class AddBookActivity extends AppCompatActivity {
         TextView textAuthor = findViewById(R.id.author);
         TextView textPublisher = findViewById(R.id.publisher);
         TextView textYear = findViewById(R.id.year);
-        if (textName.getText() == null || textAuthor.getText() == null || textPublisher.getText() == null || textYear.getText() == null) {
-            Toast.makeText(this,"添加的书籍不能为空！",Toast.LENGTH_SHORT).show();
+        TextView textPrice = findViewById(R.id.price);
+        if (textName.getText() == null || textAuthor.getText() == null || textPublisher.getText() == null || textYear.getText() == null || textPrice.getText() == null) {
+            Toast.makeText(this,"添加的书籍字段不能为空！",Toast.LENGTH_SHORT).show();
             return;
         }
         String name = textName.getText().toString();
         String author = textAuthor.getText().toString();
         String publisher = textPublisher.getText().toString();
         String year = textYear.getText().toString();
-        Book book = new Book(name, author, publisher, year);
+        String price = textPrice.getText().toString();
+        Book book = new Book(name, author, publisher, year, price);
         dbEngine.insertBooks(book);
         Toast.makeText(this,"图书《"+name+"》已经添加到个人藏书馆",Toast.LENGTH_SHORT).show();
     }
 
+    public void setting(View view) {
+        Intent intent = new Intent(AddBookActivity.this, BookSettingActivity.class);
+        startActivity(intent);
+    }
 
-//    通过静态内部类加弱引用的方式更新UI
+
+    //    通过静态内部类加弱引用的方式更新UI
     private static class GetBookTask extends AsyncTask<String, Void, String> {
 
         public static final String PRE_URL = "https://api.jike.xyz/situ/book/isbn/";
@@ -147,19 +178,22 @@ public class AddBookActivity extends AppCompatActivity {
             }
             //进行到此处说明查询到了可添加的图书，需要渲染图书信息且设置添加按钮为可添加
             JSONObject data = jsonObject.getJSONObject("data");
-            String name = data.getString("name") == null?"无": data.getString("name");
-            String author = data.getString("author") == null?"无": data.getString("author");
-            String publisher = data.getString("publishing") == null?"无": data.getString("publishing");
-            String year = data.getString("published") == null?"无": data.getString("published");
+            String name = data.getString("name") == null ? "无" : data.getString("name");
+            String author = data.getString("author") == null ? "无" : data.getString("author");
+            String publisher = data.getString("publishing") == null ? "无" : data.getString("publishing");
+            String year = data.getString("published") == null ? "无" : data.getString("published");
+            String price = data.getString("price") == null ? "无" : data.getString("price");
             TextView textName = activity.findViewById(R.id.name);
             TextView textAuthor = activity.findViewById(R.id.author);
             TextView textPublisher = activity.findViewById(R.id.publisher);
             TextView textYear = activity.findViewById(R.id.year);
+            TextView textPrice = activity.findViewById(R.id.price);
             Button button_add = activity.findViewById(R.id.button_add);
             textName.setText(name);
             textAuthor.setText(author);
             textPublisher.setText(publisher);
             textYear.setText(year);
+            textPrice.setText(price);
             button_add.setEnabled(true);
         }
     }

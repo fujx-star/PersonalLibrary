@@ -14,7 +14,6 @@ public abstract class BookDatabase extends RoomDatabase {
     private static BookDatabase INSTANCE;
     public static synchronized BookDatabase getInstance(Context context) {
         if (INSTANCE == null) {
-            Log.e("fjx","是个傻逼");
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),BookDatabase.class,"book_database").build();
         }
         return INSTANCE;

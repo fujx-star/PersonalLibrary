@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/android/PersonalLibrary/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.142" />
         <entry key="..\:/android/PersonalLibrary/app/src/main/res/layout/activity_add_book.xml" value="0.22" />
         <entry key="..\:/android/PersonalLibrary/app/src/main/res/layout/activity_book_list.xml" value="0.22" />
+        <entry key="..\:/android/PersonalLibrary/app/src/main/res/layout/activity_book_setting.xml" value="0.175" />
         <entry key="..\:/android/PersonalLibrary/app/src/main/res/layout/activity_main.xml" value="0.1703125" />
         <entry key="..\:/android/PersonalLibrary/app/src/main/res/layout/activity_test.xml" value="0.175" />
         <entry key="..\:/android/PersonalLibrary/app/src/main/res/layout/recyclerview_item.xml" value="0.22" />

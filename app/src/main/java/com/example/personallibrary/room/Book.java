@@ -12,23 +12,22 @@ public class Book {
     private String author;
     private String publisher;
     private String year;
+    private String price;
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", year=" + year +
-                '}';
+    public String getPrice() {
+        return price;
     }
 
-    public Book(String name, String author, String publisher, String year) {
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public Book(String name, String author, String publisher, String year, String price) {
         this.name = name;
         this.author = author;
         this.publisher = publisher;
         this.year = year;
+        this.price = price;
     }
 
     public int getId() {
