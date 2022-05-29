@@ -11,8 +11,11 @@
     <string name="order_by_year">按出版年份排序</string>
     <string name="set">设置</string>
     <string name="the_size">查询结果的字号：</string>
-    <string name="the_price">是否显示书的价格</string>
+    <string name="the_price">是否显示图书价格</string>
     <string name="show_on">on</string>
     <string name="show_off">off</string>
     <string name="price">价格</string>
+    <string name="welcome">欢迎来到个人藏书!</string>
+    <string name="query_book">查询书籍</string>
+    <string name="library_check">查看藏书</string>
 </resources>
