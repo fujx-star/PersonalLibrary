@@ -18,3 +18,4 @@
 - 应用使用极客分享的ISBN接口https://api.jike.xyz/situ/book/isbn/{ISBN}?apikey={apiKey} ，使用需要android机能够访问网络
 - 使用Room数据库存储个人藏书列表信息，app的重启不会丢失添加的藏书信息
 - 使用SharedPreference存储图书设置信息
+- 详细说明请看pdf文档
